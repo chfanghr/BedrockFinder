@@ -7,7 +7,7 @@
 
 public struct PatternFinder {
     // Layers along Y, rows along Z, columns along X
-    public let bedrockPattern: [[[Block]]]
+    public let bedrockPattern: [[[Block?]]]
 
     public let generator: GradientGenerator
 
@@ -43,12 +43,14 @@ public struct PatternFinder {
         for (py, layer) in bedrockPattern.enumerated() {
             for (pz, row) in layer.enumerated() {
                 for (px, block) in row.enumerated() {
-                    let blockAt = generator.at(
-                            x: p.x + Int32(px),
-                            y: p.y + Int32(py),
-                            z: p.z + Int32(pz))
-                    guard block == blockAt else{
-                        return false
+                    if let block = block{
+                        let blockAt = generator.at(
+                                x: p.x + Int32(px),
+                                y: p.y + Int32(py),
+                                z: p.z + Int32(pz))
+                        guard block == blockAt else{
+                            return false
+                        }
                     }
                 }
             }

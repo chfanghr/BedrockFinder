@@ -8,7 +8,7 @@
 fileprivate let bedrockFloor = "minecraft:bedrock_floor"
 fileprivate let bedrockRoof = "minecraft:bedrock_roof"
 
-public let overworldBedrockRange = Int32(-59)...(-64)
+public let overworldBedrockRange = Int32(-64)...(-59)
 public let netherFloorBedrockRange = Int32(0)...5
 public let netherCeilingBedrockRange = Int32(122)...127
 

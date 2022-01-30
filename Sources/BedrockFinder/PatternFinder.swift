@@ -7,7 +7,7 @@
 
 public struct PatternFinder {
     // Layers along Y, rows along Z, columns along X
-    public let bedrockPattern: [[[Block?]]]
+    public let bedrockPattern: BlockPattern
 
     public let generator: GradientGenerator
 

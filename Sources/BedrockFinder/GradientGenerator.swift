@@ -8,6 +8,10 @@
 fileprivate let bedrockFloor = "minecraft:bedrock_floor"
 fileprivate let bedrockRoof = "minecraft:bedrock_roof"
 
+public let overworldBedrockRange = Int32(-59)...(-64)
+public let netherFloorBedrockRange = Int32(0)...5
+public let netherCeilingBedrockRange = Int32(122)...127
+
 public struct GradientGenerator {
     private let rand: PosRNGProvider
     private let lower: Block
@@ -50,7 +54,8 @@ public struct GradientGenerator {
         return GradientGenerator(
                 rand: XoroshiroPosRNGProvider(world: rng),
                 lower: .bedrock, upper: .other,
-                lowerY: -64, upperY: -59)
+                lowerY: overworldBedrockRange.lowerBound,
+                upperY: overworldBedrockRange.upperBound)
     }
 
     public static func netherFloor(seed: Int64) -> GradientGenerator {
@@ -58,7 +63,8 @@ public struct GradientGenerator {
         return GradientGenerator(
                 rand: LegacyPosRNGProvider(world: rng),
                 lower: .bedrock, upper: .other,
-                lowerY: 0, upperY: 5)
+                lowerY: netherFloorBedrockRange.lowerBound,
+                upperY: netherFloorBedrockRange.upperBound)
     }
 
     public static func netherCeiling(seed: Int64) -> GradientGenerator {
@@ -66,6 +72,7 @@ public struct GradientGenerator {
         return GradientGenerator(
                 rand: LegacyPosRNGProvider(world: rng),
                 lower: .other, upper: .bedrock,
-                lowerY: 122, upperY: 127)
+                lowerY: netherCeilingBedrockRange.lowerBound,
+                upperY: netherCeilingBedrockRange.upperBound)
     }
 }
